@@ -21,6 +21,13 @@ El dueño lo está creando con sus hijas. Responde siempre en **español dominic
 
 ## Estructura
 Todo vive en **`index.html`** (HTML + CSS + JS en un solo archivo, sin dependencias ni compilación).
+Archivos de apoyo para que funcione como app en el teléfono (PWA), publicada en https://aguecoco.github.io/AguaCoco/:
+- `manifest.json` (nombre e íconos de la app) · `sw.js` (guarda el juego para jugar sin internet; primero busca
+  la versión nueva en internet). Si cambias la lista `FILES` de `sw.js`, sube el número de `VERSION`.
+- `icons/` — `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (180), `icon.svg` (dibujo original) y
+  `og-image.png` (1200×630, vista previa al compartir el link en WhatsApp). Al cambiar el logo, reemplaza estas imágenes.
+- Las etiquetas `og:*` del `<head>` usan la dirección completa del sitio; si cambia la dirección, actualízalas.
+
 Secciones del script (busca estos comentarios):
 
 | Comentario | Qué contiene |

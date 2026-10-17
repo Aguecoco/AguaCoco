@@ -8,6 +8,9 @@ y respondiendo los Portones del saber.
 ## Jugar
 Abre `index.html` en cualquier navegador. No necesita instalar nada.
 
+En línea: https://aguecoco.github.io/AguaCoco/ — en el teléfono se puede "Agregar a la pantalla de inicio"
+y funciona sin internet después de abrirlo una vez.
+
 ## Seguir mejorándolo con Claude Code
 Abre esta carpeta en Claude Code y pídele cambios en español, por ejemplo:
 - "Agrega un mundo 11 en Punta Cana con enemigos nuevos"
