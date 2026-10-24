@@ -8,8 +8,8 @@
 <meta name="description" content="Un juego de Ague Coco">
 <!-- App en el teléfono: ícono, nombre y pantalla completa -->
 <link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icono-logo-192.png">
+<link rel="apple-touch-icon" href="icono-logo-192.png">
 <meta name="theme-color" content="#2a1a10">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -20,7 +20,7 @@
 <meta property="og:title" content="Rompecocos">
 <meta property="og:description" content="Un juego de Ague Coco">
 <meta property="og:url" content="https://aguecoco.github.io/AguaCoco/">
-<meta property="og:image" content="https://aguecoco.github.io/AguaCoco/icons/og-image.png">
+<meta property="og:image" content="https://aguecoco.github.io/AguaCoco/icons/vista-previa.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="es_DO">
@@ -107,6 +107,7 @@ p{margin:0;line-height:1.45;font-size:15px}
 .board li.empty{display:block;text-align:center;font-weight:600;background:transparent;border-style:dashed}
 .by{font-size:13px;font-weight:600;margin-top:6px;color:#5a3a22}
 .by b{color:#2f8a3a;font-weight:800}
+.brandlogo{display:block;margin:2px auto 0;width:auto;height:clamp(72px,20vh,140px);max-width:100%}
 .quiz{gap:10px;width:min(440px,100%)}
 .qhead{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .qsub{color:#fff;font-weight:800;font-size:14px;border:2px solid var(--ink);border-radius:999px;padding:5px 12px;box-shadow:0 2px 0 var(--ink)}
@@ -161,7 +162,7 @@ p{margin:0;line-height:1.45;font-size:15px}
 
 <div class="overlay" id="start">
   <div class="panel">
-    <div><h1>Rompecocos</h1><div class="sub">Aventura por la isla</div><div class="by">Un juego de <b>Ague Coco</b> · cocos personalizados</div></div>
+    <div><h1>Rompecocos</h1><div class="sub">Aventura por la isla</div><div class="by">Un juego de</div><img class="brandlogo" src="logo.png" alt="Ague Coco · Cocos personalizados"></div>
     <p>Lleva a Tito, el cangrejo, por 10 mundos de la isla. Recoge cocos, ábrelos contra las rocas y llega al stand de Ague Coco con suficiente agua.</p>
     <div class="me">
       <div class="rec"><small>Tu récord</small><b id="myTotal">0 ml</b><span id="myAlias">Sin alias</span></div>
@@ -1308,22 +1309,22 @@ function drawSigns(){
 }
 function drawGoal(){
   const x=goal.x,y=goal.y;if(x>camX+viewW+200||x<camX-200)return;
-  ctx.strokeStyle='#3b2412';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x+10,y-60);ctx.lineTo(x+10,y-150);ctx.stroke();
+  ctx.strokeStyle='#3b2412';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(x+10,y-60);ctx.lineTo(x+10,y-205);ctx.stroke();
   const cols=['#002d62','#ffffff','#ce1126','#ffffff'];
-  for(let k=0;k<8;k++){ctx.fillStyle=cols[k%4];ctx.beginPath();ctx.moveTo(x+10,y-160);ctx.arc(x+10,y-130,70,Math.PI+k*Math.PI/8,Math.PI+(k+1)*Math.PI/8);ctx.closePath();ctx.fill();}
-  ctx.beginPath();ctx.arc(x+10,y-130,70,Math.PI,0);ctx.stroke();
-  ctx.fillStyle='#fff8ea';rr(x-50,y-74,120,50,6);ctx.fill();ctx.stroke();
-  drawBrand(x+10,y-49,108,40);
-  [[x-28,y-84],[x-6,y-88],[x+16,y-84],[x+38,y-88],[x+5,y-100]].forEach(([a,b],i)=>drawPersonalCoco(a,b,11,i));
+  for(let k=0;k<8;k++){ctx.fillStyle=cols[k%4];ctx.beginPath();ctx.moveTo(x+10,y-220);ctx.arc(x+10,y-190,70,Math.PI+k*Math.PI/8,Math.PI+(k+1)*Math.PI/8);ctx.closePath();ctx.fill();}
+  ctx.beginPath();ctx.arc(x+10,y-190,70,Math.PI,0);ctx.stroke();
+  ctx.fillStyle='#fbf1d6';rr(x-50,y-62,120,40,6);ctx.fill();ctx.stroke();ctx.fillStyle='#0a6b12';ctx.fillRect(x-48,y-60,116,7);
+  [[x-30,y-38],[x-8,y-38],[x+14,y-38],[x+36,y-38],[x+58,y-38]].forEach(([a,b],i)=>drawPersonalCoco(a-4,b,8,i));
+  drawBrand(x+10,y-115,130,106);
   ctx.fillStyle='#3b2412';[x-32,x+52].forEach(wx=>{ctx.beginPath();ctx.arc(wx,y-12,12,0,7);ctx.fill();});
   ctx.fillStyle='#ccc';[x-32,x+52].forEach(wx=>{ctx.beginPath();ctx.arc(wx,y-12,4,0,7);ctx.fill();});
   ctx.strokeStyle='#3b2412';ctx.beginPath();ctx.moveTo(x+70,y-50);ctx.lineTo(x+95,y-40);ctx.stroke();
 }
 // ---------- marca Ague Coco ----------
-const BRAND={name:'Ague Coco',tag:'Cocos personalizados',logoSrc:''}; // logoSrc: imagen del logo (data:image/png;base64,...) cuando la tengamos
+const BRAND={name:'Ague Coco',tag:'Cocos personalizados',logoSrc:'logo.png'}; // logoSrc: archivo del logo (fondo transparente); si no carga, se escribe el nombre
 let brandImg=null;if(BRAND.logoSrc){brandImg=new Image();brandImg.src=BRAND.logoSrc;}
 function drawBrand(cx,cy,w,h){
-  if(brandImg&&brandImg.complete&&brandImg.naturalWidth){const r=Math.min(w/brandImg.naturalWidth,h/brandImg.naturalHeight);const iw=brandImg.naturalWidth*r,ih=brandImg.naturalHeight*r;ctx.drawImage(brandImg,cx-iw/2,cy-ih/2,iw,ih);return;}
+  if(brandImg&&brandImg.complete&&brandImg.naturalWidth){ctx.imageSmoothingQuality='high';const r=Math.min(w/brandImg.naturalWidth,h/brandImg.naturalHeight);const iw=brandImg.naturalWidth*r,ih=brandImg.naturalHeight*r;ctx.drawImage(brandImg,cx-iw/2,cy-ih/2,iw,ih);return;}
   ctx.textAlign='center';ctx.textBaseline='middle';
   ctx.font=Math.round(h*0.5)+'px "Bagel Fat One", sans-serif';
   const word=BRAND.name,tw=ctx.measureText(word).width,sc=Math.min(1,(w-6)/tw);
@@ -1350,11 +1351,11 @@ function drawStand(x,y){
   const ink='#3b2412';ctx.strokeStyle=ink;ctx.lineWidth=3;
   // postes y techo
   ctx.fillStyle='#8a5a2e';ctx.fillRect(x-78,y-150,8,150);ctx.fillRect(x+70,y-150,8,150);
-  const stripes=['#2f8a3a','#fff8ea'];
-  for(let k=0;k<8;k++){ctx.fillStyle=stripes[k%2];ctx.beginPath();ctx.moveTo(x-92+k*23,y-150);ctx.lineTo(x-92+(k+1)*23,y-150);ctx.lineTo(x-92+(k+1)*23,y-128);ctx.quadraticCurveTo(x-92+k*23+11.5,y-118,x-92+k*23,y-128);ctx.closePath();ctx.fill();}
-  ctx.strokeRect(x-92,y-150,184,22);
-  // letrero
-  ctx.fillStyle='#fff8ea';rr(x-80,y-196,160,48,8);ctx.fill();ctx.stroke();drawBrand(x,y-172,150,40);
+  const stripes=['#0a6b12','#fbf1d6','#ee1622','#fbf1d6']; // colores del logo: verde, crema y rojo de la flor
+  for(let k=0;k<8;k++){ctx.fillStyle=stripes[k%4];ctx.beginPath();ctx.moveTo(x-92+k*23,y-150);ctx.lineTo(x-92+(k+1)*23,y-150);ctx.lineTo(x-92+(k+1)*23,y-128);ctx.quadraticCurveTo(x-92+k*23+11.5,y-118,x-92+k*23,y-128);ctx.closePath();ctx.fill();}
+  ctx.fillStyle='#2a1206';ctx.fillRect(x-92,y-156,184,6);ctx.strokeStyle='#2a1206';ctx.strokeRect(x-92,y-156,184,28);
+  // letrero: el logo encima del techito
+  drawBrand(x,y-218,156,128);
   // mostrador
   ctx.fillStyle='#c98f4f';rr(x-84,y-62,168,62,4);ctx.fill();ctx.stroke();
   ctx.strokeStyle='rgba(59,36,18,.35)';ctx.lineWidth=2;for(let k=1;k<6;k++){ctx.beginPath();ctx.moveTo(x-84+k*28,y-58);ctx.lineTo(x-84+k*28,y-4);ctx.stroke();}

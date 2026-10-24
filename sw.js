@@ -1,7 +1,7 @@
 // Service worker de Rompecocos: guarda el juego en el teléfono para que abra sin internet.
 // Si cambias la lista de archivos, sube el número de VERSION para que se borre la copia vieja.
-const VERSION = 'rompecocos-v1';
-const FILES = ['./', 'index.html', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
+const VERSION = 'rompecocos-v2';
+const FILES = ['./', 'index.html', 'manifest.json', 'logo.png', 'icono-logo-192.png', 'icono-logo-512.png', 'icons/icono-logo-maskable-512.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(VERSION).then(c => c.addAll(FILES)).then(() => self.skipWaiting()));

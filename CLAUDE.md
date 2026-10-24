@@ -17,15 +17,17 @@ El dueño lo está creando con sus hijas. Responde siempre en **español dominic
   Lengua Española o Inglés para abrir el paso. Público: niños de primaria. Contenido dominicano y correcto.
 - Sonido sintetizado con Web Audio (sin archivos de audio). Récord personal guardado en `localStorage`.
 - Marca Ague Coco: stand a mitad de cada mundo, carrito en la meta, cocos personalizados dibujados.
-  `BRAND.logoSrc` está vacío: cuando el dueño entregue el logo, ponerlo ahí (o como archivo `logo.png`).
+  Logo real en `logo.png` (fondo transparente, `BRAND.logoSrc`): se dibuja encima del techito del stand, en el carrito
+  y en el menú de inicio. Colores del logo: verde `#0a6b12`, crema `#fbf1d6`, marrón `#2a1206`, rojo flor `#ee1622`.
 
 ## Estructura
 Todo vive en **`index.html`** (HTML + CSS + JS en un solo archivo, sin dependencias ni compilación).
 Archivos de apoyo para que funcione como app en el teléfono (PWA), publicada en https://aguecoco.github.io/AguaCoco/:
 - `manifest.json` (nombre e íconos de la app) · `sw.js` (guarda el juego para jugar sin internet; primero busca
   la versión nueva en internet). Si cambias la lista `FILES` de `sw.js`, sube el número de `VERSION`.
-- `icons/` — `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` (180), `icon.svg` (dibujo original) y
-  `og-image.png` (1200×630, vista previa al compartir el link en WhatsApp). Al cambiar el logo, reemplaza estas imágenes.
+- Íconos de la app: `icono-logo-192.png` y `icono-logo-512.png` (del dueño, en la raíz) e
+  `icons/icono-logo-maskable-512.png` (el mismo con margen, para Android). `icons/vista-previa.jpg` (1200×630) es la
+  vista previa al compartir el link en WhatsApp; si cambias la imagen, cámbiale también el nombre para que WhatsApp la renueve.
 - Las etiquetas `og:*` del `<head>` usan la dirección completa del sitio; si cambia la dirección, actualízalas.
 
 Secciones del script (busca estos comentarios):
@@ -74,7 +76,7 @@ La versión original corría como Artifact de Claude y usaba `window.claude.use(
 récord solo en el dispositivo. Para una tabla real en la web, conectar un servicio como Firebase o Supabase.
 
 ## Próximos pasos posibles
-1. Poner el logo real de Ague Coco (`BRAND.logoSrc` o `logo.png`).
+1. ~~Poner el logo real de Ague Coco~~ (hecho).
 2. Tabla de puntajes en Firebase/Supabase y botón "Rétame" para compartir el puntaje en WhatsApp/Instagram.
 3. Publicar como página web (GitHub Pages / Netlify) e instalable (PWA: `manifest.json` + service worker).
 4. Separar en archivos (`levels.js`, `questions.js`, …) cuando el proyecto crezca.
