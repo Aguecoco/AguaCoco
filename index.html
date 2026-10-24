@@ -74,6 +74,7 @@ p{margin:0;line-height:1.45;font-size:15px}
 .btn{font-family:var(--display);font-size:21px;border:3px solid var(--ink);border-radius:16px;background:var(--gold);color:var(--ink);padding:9px 16px;box-shadow:0 4px 0 var(--ink);cursor:pointer}
 .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
 .btn.alt{background:var(--shell);font-size:17px}
+.btn.share{background:#25d366;color:var(--ink);font-size:18px}
 .btn:focus-visible,.lvl:focus-visible,.menu-btn:focus-visible,.cbtn:focus-visible{outline:3px solid var(--water);outline-offset:2px}
 .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
@@ -225,6 +226,7 @@ p{margin:0;line-height:1.45;font-size:15px}
       <button class="btn alt" id="resRetry">Repetir</button>
       <button class="btn" id="resNext">Siguiente</button>
     </div>
+    <button class="btn share" id="resShare" hidden>📲 ¡Rétame! Comparte tu puntaje</button>
   </div>
 </div>
 
@@ -631,6 +633,7 @@ function endLevel(win,reason){
     :`Juntaste ${Math.round(water)} ml y necesitabas ${L.target} ml. ¡Que no se te pierdan los cocos!`;
   if(quizStats.asked)$('resText').textContent+=` Portones del saber: ${quizStats.first} de ${quizStats.asked} a la primera.`;
   $('resNext').hidden=!win||lvlIdx===LEVELS.length-1;
+  $('resShare').hidden=!win;lastWin={w:Math.round(water),stars};
   $('ctrl').hidden=true;keys.left=keys.right=keys.jump=false;aim=null;
   setTimeout(()=>{$('result').hidden=false;win?SFX.win():SFX.lose();resize();},900);
 }
@@ -653,6 +656,12 @@ function showMenu(){
 $('resMenu').onclick=()=>{SFX.tap();showMenu();};
 $('resRetry').onclick=()=>{SFX.tap();startLevel(lvlIdx);};
 $('resNext').onclick=()=>{SFX.tap();startLevel(lvlIdx+1);};
+// Botón "Rétame": comparte el puntaje con el menú del teléfono (WhatsApp, Instagram…) o, si no hay, abre WhatsApp
+let lastWin=null;const SHARE_URL='https://aguecoco.github.io/AguaCoco/';
+$('resShare').onclick=()=>{SFX.tap();if(!lastWin)return;
+  const text=`¡Te reto! 🥥🦀 Junté ${lastWin.w.toLocaleString('es-DO')} ml de agua de coco en el Mundo ${lvlIdx+1} (${L.name}) de Rompecocos ${'⭐'.repeat(lastWin.stars)}. ¿Tú me ganas? Un juego de Ague Coco 👉`;
+  if(navigator.share){navigator.share({title:'Rompecocos',text,url:SHARE_URL}).catch(()=>{});return;}
+  window.open('https://wa.me/?text='+encodeURIComponent(text+' '+SHARE_URL),'_blank','noopener');};
 $('menuBtn').onclick=()=>{SFX.tap();showMenu();};
 $('muteBtn').onclick=()=>{initAudio();setMuted(!muted);SFX.tap();};
 let soundHeard=false;

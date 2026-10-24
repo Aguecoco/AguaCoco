@@ -77,7 +77,8 @@ récord solo en el dispositivo. Para una tabla real en la web, conectar un servi
 
 ## Próximos pasos posibles
 1. ~~Poner el logo real de Ague Coco~~ (hecho).
-2. Tabla de puntajes en Firebase/Supabase y botón "Rétame" para compartir el puntaje en WhatsApp/Instagram.
+2. ~~Botón "Rétame"~~ (hecho: sale al ganar un mundo; usa el menú de compartir del teléfono o abre WhatsApp).
+   Falta: tabla de puntajes compartida en Firebase/Supabase.
 3. Publicar como página web (GitHub Pages / Netlify) e instalable (PWA: `manifest.json` + service worker).
 4. Separar en archivos (`levels.js`, `questions.js`, …) cuando el proyecto crezca.
 5. Empaquetar para Android/iPhone con Capacitor.
